@@ -152,7 +152,7 @@ def generate_image(prompt, seed, guidance):
         _, patches = generate(input_ids, width // 16 * 16, height // 16 * 16, cfg_weight=guidance, parallel_size=parallel_size)
         images = unpack(patches, width // 16 * 16, height // 16 * 16)
 
-        return [Image.fromarray(images[i]).resize((1024, 1024), Image.LANCZOS) for i in range(parallel_size)]
+        return [Image.fromarray(images[i]).resize((1024, 512), Image.LANCZOS) for i in range(parallel_size)]
 
 
 @app.post("/generate_images/")
