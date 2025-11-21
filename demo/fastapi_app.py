@@ -166,7 +166,7 @@ async def generate_images(
         def image_stream():
             for img in images:
                 buf = io.BytesIO()
-                img.save(buf, format='PNG')
+                img.save(buf, format='JPEG', quality=85)
                 buf.seek(0)
                 yield buf.read()
 
