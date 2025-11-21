@@ -17,11 +17,14 @@ language_config._attn_implementation = 'eager'
 vl_gpt = AutoModelForCausalLM.from_pretrained(model_path,
                                               language_config=language_config,
                                               trust_remote_code=True)
-vl_gpt = vl_gpt.to(torch.bfloat16).cuda()
+#vl_gpt = vl_gpt.to(torch.bfloat16).cuda()
 
 vl_chat_processor = VLChatProcessor.from_pretrained(model_path)
 tokenizer = vl_chat_processor.tokenizer
 cuda_device = 'cuda' if torch.cuda.is_available() else 'cpu'
+
+vl_gpt = vl_gpt.to(torch.bfloat16 if torch.cuda.is_available() else torch.float32).to(cuda_device)
+
 
 
 @torch.inference_mode()

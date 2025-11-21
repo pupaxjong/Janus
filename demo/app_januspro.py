@@ -12,7 +12,7 @@ import time
 
 
 # Load model and processor
-model_path = "deepseek-ai/Janus-Pro-7B"
+model_path = "deepseek-ai/Janus-Pro-1B"
 config = AutoConfig.from_pretrained(model_path)
 language_config = config.language_config
 language_config._attn_implementation = 'eager'
@@ -243,3 +243,4 @@ with gr.Blocks() as demo:
 
 demo.launch(share=True)
 # demo.queue(concurrency_count=1, max_size=10).launch(server_name="0.0.0.0", server_port=37906, root_path="/path")
+demo.queue(concurrency_count=1, max_size=10).launch(server_name="0.0.0.0", server_port=7860)
